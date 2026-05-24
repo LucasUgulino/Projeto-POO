@@ -3,10 +3,10 @@ package com.clinica.model;
 public abstract class Pessoa {
 
     private String nome;
-    private int cpf;
-    private int contato;
-    
-    public Pessoa(String nome, int cpf, int contato) {
+    private String cpf;
+    private String contato;
+
+    public Pessoa(String nome, String cpf, String contato) {
         this.nome = nome;
         this.cpf = cpf;
         this.contato = contato;
@@ -20,21 +20,20 @@ public abstract class Pessoa {
         this.nome = nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public int getContato() {
+    public String getContato() {
         return contato;
     }
 
-    public void setContato(int contato) {
+    public void setContato(String contato) {
         this.contato = contato;
     }
 
-    
 }

@@ -8,7 +8,7 @@ public class Profissional extends Pessoa {
     private double valorConsulta;
     private ArrayList<String> horários;
 
-    public Profissional(String nome, int cpf, int contato, String especialidade, double valorConsulta) {
+    public Profissional(String nome, String cpf, String contato, String especialidade, double valorConsulta) {
         super(nome, cpf, contato);
         this.especialidade = especialidade;
         this.valorConsulta = valorConsulta;
@@ -35,16 +35,12 @@ public class Profissional extends Pessoa {
         return horários;
     }
 
-    public void setHorários(ArrayList<String> horários) {
-        this.horários = horários;
-    }
-
     public void adicionarHorario(String horario) {
         horários.add(horario);
     }
 
     public void removerHorario(String horarioAntigo) {
         horários.remove(horarioAntigo);
-        System.out.println("Um Horário Foi Agendado e Removida da Lista de Disponíveis");
+        System.out.println("Um Horário Foi Agendado e Removido da Lista de Disponíveis");
     }
 }
