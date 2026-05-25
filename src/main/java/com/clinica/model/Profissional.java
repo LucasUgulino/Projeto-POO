@@ -1,18 +1,22 @@
 package com.clinica.model;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Profissional extends Pessoa {
 
     private String especialidade;
     private double valorConsulta;
-    private ArrayList<String> horários;
+    private ArrayList<LocalTime> horarios;
+    private int duracaoAtendimento;
 
-    public Profissional(String nome, String cpf, String contato, String especialidade, double valorConsulta) {
+    public Profissional(String nome, String cpf, String contato, String especialidade, double valorConsulta,
+            int duracaoAtendimento) {
         super(nome, cpf, contato);
         this.especialidade = especialidade;
         this.valorConsulta = valorConsulta;
-        this.horários = new ArrayList<>();
+        this.horarios = new ArrayList<>();
+        this.duracaoAtendimento = duracaoAtendimento;
     }
 
     public String getEspecialidade() {
@@ -31,16 +35,20 @@ public class Profissional extends Pessoa {
         this.valorConsulta = valorConsulta;
     }
 
-    public ArrayList<String> getHorários() {
-        return horários;
+    public ArrayList<LocalTime> getHorarios() {
+        return horarios;
     }
 
-    public void adicionarHorario(String horario) {
-        horários.add(horario);
+    public int getDuracaoAtendimento() {
+        return duracaoAtendimento;
     }
 
-    public void removerHorario(String horarioAntigo) {
-        horários.remove(horarioAntigo);
-        System.out.println("Um Horário Foi Agendado e Removido da Lista de Disponíveis");
+    public void adicionarHorario(LocalTime horario) {
+        horarios.add(horario);
     }
+
+    public void removerHorario(LocalTime horarioAntigo) {
+        horarios.remove(horarioAntigo);
+    }
+
 }
