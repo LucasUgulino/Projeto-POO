@@ -15,12 +15,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Repositório genérico para persistência em arquivos JSON via Gson.
- *
- * Usa adaptadores personalizados para serializar LocalDate e LocalTime,
- * pois o Gson padrão não suporta tipos java.time diretamente.
- */
+
 public class JsonRepository {
 
     private static final Gson gson = new GsonBuilder()
@@ -29,13 +24,7 @@ public class JsonRepository {
             .setPrettyPrinting()
             .create();
 
-    /**
-     * Salva uma lista de objetos em um arquivo JSON.
-     *
-     * @param lista   lista de objetos a serializar
-     * @param arquivo caminho do arquivo de destino (ex: "data/pacientes.json")
-     * @param <T>     tipo dos elementos da lista
-     */
+ 
     public static <T> void salvar(List<T> lista, String arquivo) {
         File file = new File(arquivo);
         if (file.getParentFile() != null) {
@@ -48,14 +37,7 @@ public class JsonRepository {
         }
     }
 
-    /**
-     * Carrega uma lista de objetos a partir de um arquivo JSON.
-     *
-     * @param arquivo caminho do arquivo fonte
-     * @param tipo    tipo genérico da lista (ex: {@code new TypeToken<List<Paciente>>(){}.getType()})
-     * @param <T>     tipo dos elementos da lista
-     * @return lista desserializada, ou lista vazia se o arquivo não existir
-     */
+  
     public static <T> List<T> carregar(String arquivo, Type tipo) {
         File file = new File(arquivo);
         if (!file.exists()) {
