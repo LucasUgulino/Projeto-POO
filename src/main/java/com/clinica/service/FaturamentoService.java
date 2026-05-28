@@ -20,7 +20,7 @@ public class FaturamentoService {
             Consulta consulta = (Consulta) agendamento;
 
             if (consulta.getTipoConsulta().equalsIgnoreCase("RETORNO")) {
-                valor = consulta.getProfissional().getValorConsulta() * 0.5;
+                return consulta.getProfissional().getValorConsulta() * 0.5;
             }
         }
 

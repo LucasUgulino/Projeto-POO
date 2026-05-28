@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import com.clinica.model.Agendamento;
 import com.clinica.model.Consulta;
+import com.clinica.model.FilaEspera;
+import com.clinica.model.Paciente;
 import com.clinica.model.Procedimento;
 import com.clinica.model.Profissional;
 import com.clinica.model.Sala;
@@ -16,10 +18,18 @@ public class AgendamentoService {
 
     private ArrayList<Agendamento> agendamentos;
     private TaxaCancelamento taxaCancelamento;
+    private FilaEspera filaEspera;
 
     public AgendamentoService() {
         agendamentos = new ArrayList<>();
         taxaCancelamento = new TaxaCancelamento();
+        filaEspera = new FilaEspera();
+    }
+
+    public AgendamentoService(FilaEspera filaEspera) {
+        agendamentos = new ArrayList<>();
+        taxaCancelamento = new TaxaCancelamento();
+        this.filaEspera = filaEspera;
     }
 
     public boolean agendar(Consulta consulta) {
@@ -64,6 +74,14 @@ public class AgendamentoService {
         double taxa = taxaCancelamento.calcularTaxa(agendamento, LocalDateTime.now());
         agendamento.setStatus(StatusAgendamento.CANCELADO);
         return taxa;
+    }
+
+    public Paciente cancelar(Agendamento agendamento, String motivo) {
+        agendamento.setStatus(StatusAgendamento.CANCELADO);
+        if (!filaEspera.estaVazia()) {
+            return filaEspera.proximo();
+        }
+        return null;
     }
 
     public boolean finalizar(int id) {
