@@ -3,7 +3,6 @@ package com.clinica.service;
 import com.clinica.model.Consulta;
 import com.clinica.model.FilaEspera;
 import com.clinica.model.Paciente;
-import com.clinica.model.Procedimento;
 import com.clinica.model.Profissional;
 import com.clinica.model.Sala;
 import com.clinica.repository.JsonRepository;

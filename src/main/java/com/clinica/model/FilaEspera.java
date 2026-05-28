@@ -1,40 +1,36 @@
 package com.clinica.model;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class FilaEspera {
 
-    private final Queue<Paciente> fila;
+    private final List<Paciente> fila;
 
     public FilaEspera() {
-        this.fila = new LinkedList<>();
+        this.fila = new ArrayList<>();
     }
 
-   
     public void adicionar(Paciente paciente) {
         fila.add(paciente);
     }
 
-    
-     * @return próximo paciente, ou {@code null} se a fila estiver vazia
-     */
     public Paciente proximo() {
-        return fila.poll();
+        if (fila.isEmpty()) {
+            return null;
+        }
+        return fila.remove(0);
     }
 
-    /** Verifica se a fila está vazia. */
     public boolean estaVazia() {
         return fila.isEmpty();
     }
 
-    /** Retorna o número de pacientes na fila sem removê-los. */
     public int tamanho() {
         return fila.size();
     }
 
-    public Queue<Paciente> getFila() {
+    public List<Paciente> getFila() {
         return fila;
     }
 }
