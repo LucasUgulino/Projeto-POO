@@ -38,6 +38,8 @@ public class AgendamentoService {
         }
 
         if (verificarConflito(consulta.getProfissional(), consulta.getSala(), consulta.getData(), consulta.getHora())) {
+            consulta.setStatus(StatusAgendamento.AGUARDANDO);
+            filaEspera.adicionar(consulta.getPaciente());
             return false;
         }
 
@@ -52,6 +54,8 @@ public class AgendamentoService {
         }
 
         if (verificarConflito(procedimento.getProfissional(), procedimento.getSala(), procedimento.getData(), procedimento.getHora())) {
+            procedimento.setStatus(StatusAgendamento.AGUARDANDO);
+            filaEspera.adicionar(procedimento.getPaciente());
             return false;
         }
 
@@ -126,5 +130,9 @@ public class AgendamentoService {
 
     public ArrayList<Agendamento> listarTodos() {
         return agendamentos;
+    }
+
+    public FilaEspera getFilaEspera() {
+        return filaEspera;
     }
 }
