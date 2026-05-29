@@ -70,7 +70,7 @@ public class RelatorioService {
         }
 
         System.out.println("\n========== RELATÓRIO MENSAL ==========");
-        System.out.println("Período: " + Month.of(mes) + "/" + ano);
+        System.out.println("Período: " + String.format("%02d/%d", mes, ano));
         System.out.println("Pacientes atendidos: " + atendidos);
         System.out.println("Cancelamentos: " + cancelados);
         System.out.printf("Receita total: R$ %.2f%n", receitaTotal);
@@ -108,6 +108,37 @@ public class RelatorioService {
         System.out.printf("Taxa de ocupação : %.1f%%\n", taxaOcupacao);
         System.out.println("======================================");
         System.out.println();
+
+        System.out.println("\n--- Profissional Mais Demandado ---");
+        String profMaisDemandado = "";
+        int maxAtendimentos = 0;
+
+        ArrayList<String> nomes = new ArrayList<>();
+        ArrayList<Integer> contagens = new ArrayList<>();
+
+        for (Agendamento agendamento : doMes) {
+            if (agendamento.getStatus() == StatusAgendamento.CONCLUIDO) {
+                String nome = agendamento.getProfissional().getNome();
+                int index = nomes.indexOf(nome);
+                if (index == -1) {
+                    nomes.add(nome);
+                    contagens.add(1);
+                } else {
+                    contagens.set(index, contagens.get(index) + 1);
+                }
+            }
+        }
+
+        for (int i = 0; i < nomes.size(); i++) {
+            if (contagens.get(i) > maxAtendimentos) {
+                maxAtendimentos = contagens.get(i);
+                profMaisDemandado = nomes.get(i);
+            }
+        }
+
+        if (!profMaisDemandado.isEmpty()) {
+            System.out.println(profMaisDemandado + " (" + maxAtendimentos + " atendimentos)");
+        }
 
     }
 
