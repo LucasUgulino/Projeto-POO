@@ -11,10 +11,17 @@ public class FilaEspera {
         this.fila = new ArrayList<>();
     }
 
-    public void adicionar(Paciente paciente) {
-        if (paciente != null) {
-            fila.add(paciente);
+    public boolean adicionar(Paciente paciente) {
+        if (paciente == null) {
+            return false;
         }
+
+        if (existePacienteNaFila(paciente.getCpf())) {
+            return false;
+        }
+
+        fila.add(paciente);
+        return true;
     }
 
     public Paciente proximo() {
@@ -42,6 +49,16 @@ public class FilaEspera {
 
     public List<Paciente> getFila() {
         return fila;
+    }
+
+    private boolean existePacienteNaFila(String cpf) {
+        for (Paciente paciente : fila) {
+            if (paciente.getCpf().equals(cpf)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
