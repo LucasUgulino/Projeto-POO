@@ -27,6 +27,15 @@ public class RelatorioService {
         return resultado;
     }
 
+    public List<Agendamento> listarPorStatus(StatusAgendamento status) {
+        List<Agendamento> resultado = new ArrayList<>();
+        for (Agendamento agendamento : agendamentos) {
+            if (agendamento.getStatus() == status) {
+                resultado.add(agendamento);
+            }
+        }
+        return resultado;
+    }
 
 
 }
