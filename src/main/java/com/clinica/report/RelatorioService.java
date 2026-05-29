@@ -101,6 +101,18 @@ public class RelatorioService {
         for (int i = 0; i < especialidades.size(); i++) {
             System.out.printf("%-20s R$ %.2f%n", especialidades.get(i), receitas.get(i));
         }
+
+        int totalSlots = doMes.size();
+        double taxaOcupacao = 0.0;
+
+        if (totalSlots > 0) {
+            taxaOcupacao = (atendidos * 100.0) / totalSlots;
+        }
+
+        System.out.println();
+        System.out.printf("Taxa de ocupação : %.1f%%\n", taxaOcupacao);
+        System.out.println("======================================");
+        System.out.println();
             
     }
 
