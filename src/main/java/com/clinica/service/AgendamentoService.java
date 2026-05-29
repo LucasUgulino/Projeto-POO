@@ -68,11 +68,11 @@ public class AgendamentoService {
         Agendamento agendamento = buscarPorId(id);
 
         if (agendamento == null) {
-            return 0.0;
+            return -1.0;
         }
 
         if (motivo == null || motivo.equals("")) {
-            return 0.0;
+            return -1.0;
         }
 
         double taxa = taxaCancelamento.calcularTaxa(agendamento, LocalDateTime.now());

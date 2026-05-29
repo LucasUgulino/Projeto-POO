@@ -2,6 +2,7 @@ package com.clinica.report;
 
 import com.clinica.model.Agendamento;
 import com.clinica.model.Profissional;
+import com.clinica.service.FaturamentoService;
 import com.clinica.util.StatusAgendamento;
 
 import java.time.LocalDate;
@@ -12,9 +13,11 @@ import java.util.List;
 public class RelatorioService {
 
     private List<Agendamento> agendamentos;
+    private FaturamentoService faturamentoService;
 
     public RelatorioService(List<Agendamento> agendamentos) {
         this.agendamentos = agendamentos;
+        this.faturamentoService = new FaturamentoService();
     }
 
     public List<Agendamento> listarPorProfissional(Profissional profissional) {
@@ -65,7 +68,7 @@ public class RelatorioService {
 
             if (agendamento.getStatus() == StatusAgendamento.CONCLUIDO) {
                 atendidos++;
-                receitaTotal += agendamento.calcularValor();
+                receitaTotal += faturamentoService.calcularValor(agendamento);
             }
         }
 
@@ -86,9 +89,9 @@ public class RelatorioService {
                 int index = especialidades.indexOf(especialidade);
                 if (index == -1) {
                     especialidades.add(especialidade);
-                    receitas.add(agendamento.calcularValor());
+                    receitas.add(faturamentoService.calcularValor(agendamento));
                 } else {
-                    receitas.set(index, receitas.get(index) + agendamento.calcularValor());
+                    receitas.set(index, receitas.get(index) + faturamentoService.calcularValor(agendamento));
                 }
             }
         }

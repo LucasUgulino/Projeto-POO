@@ -65,6 +65,6 @@ public class FaturamentoService {
 
     private boolean temConvenio(Agendamento agendamento) {
         String convenio = agendamento.getPaciente().getConvenio();
-        return convenio != null && !convenio.equals("");
+        return convenio != null && !convenio.isEmpty() && !convenio.equalsIgnoreCase("particular");
     }
 }
