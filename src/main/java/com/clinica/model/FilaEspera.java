@@ -12,10 +12,20 @@ public class FilaEspera {
     }
 
     public void adicionar(Paciente paciente) {
-        fila.add(paciente);
+        if (paciente != null) {
+            fila.add(paciente);
+        }
     }
 
     public Paciente proximo() {
+        for (int i = 0; i < fila.size(); i++) {
+            Paciente paciente = fila.get(i);
+
+            if (paciente.getPrioridade() != null && !paciente.getPrioridade().equalsIgnoreCase("normal")) {
+                return fila.remove(i);
+            }
+        }
+
         if (fila.isEmpty()) {
             return null;
         }
@@ -33,4 +43,5 @@ public class FilaEspera {
     public List<Paciente> getFila() {
         return fila;
     }
+
 }
