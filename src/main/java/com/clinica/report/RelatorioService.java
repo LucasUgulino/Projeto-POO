@@ -59,14 +59,10 @@ public class RelatorioService {
         double receitaTotal = 0;
 
         for (Agendamento agendamento : doMes) {
-            if (agendamento.getStatus() == StatusAgendamento.CONCLUIDO) {
-                atendidos++;
-            }
-            
             if (agendamento.getStatus() == StatusAgendamento.CANCELADO) {
                 cancelados++;
             }
-            
+
             if (agendamento.getStatus() == StatusAgendamento.CONCLUIDO) {
                 atendidos++;
                 receitaTotal += agendamento.calcularValor();
@@ -79,7 +75,6 @@ public class RelatorioService {
         System.out.println("Cancelamentos: " + cancelados);
         System.out.printf("Receita total: R$ %.2f%n", receitaTotal);
 
-        
         System.out.println("\n--- Receita por Especialidade ---");
 
         ArrayList<String> especialidades = new ArrayList<>();
@@ -113,11 +108,7 @@ public class RelatorioService {
         System.out.printf("Taxa de ocupação : %.1f%%\n", taxaOcupacao);
         System.out.println("======================================");
         System.out.println();
-            
+
     }
-
-
-
-
 
 }
