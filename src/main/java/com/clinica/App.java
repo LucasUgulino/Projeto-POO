@@ -155,8 +155,7 @@ public class App {
         }
         List<Paciente> lista = filaEspera.getFila();
         for (int i = 0; i < lista.size(); i++) {
-            System.out.printf("%d. %s [%s]%n", i + 1,
-                    lista.get(i).getNome(), lista.get(i).getPrioridade());
+            System.out.printf("%d. %s [%s]%n", i + 1, lista.get(i).getNome(), lista.get(i).getPrioridade());
         }
     }
 
