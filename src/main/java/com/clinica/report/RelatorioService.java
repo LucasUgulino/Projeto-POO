@@ -37,5 +37,16 @@ public class RelatorioService {
         return resultado;
     }
 
+    public List<Agendamento> listarPorPeriodo(LocalDate inicio, LocalDate fim) {
+        List<Agendamento> resultado = new ArrayList<>();
+        for (Agendamento agendamento : agendamentos) {
+            LocalDate data = agendamento.getData();
+            if (!data.isBefore(inicio) && !data.isAfter(fim)) {
+                resultado.add(agendamento);
+            }
+        }
+        return resultado;
+    }
+
 
 }
